@@ -164,8 +164,9 @@ export default class Carousel extends Component {
         const currentScrollX = e.nativeEvent.contentOffset.x;
 
         const swiped = (currentScrollX - currentPageScrollX) / this._getPageOffset();
-
-        const pagesSwiped = Math.floor(Math.abs(swiped) + (1 - swipeThreshold)) * Math.sign(swiped);
+        const sign = Math.sign(swiped);
+        
+        const pagesSwiped = Math.floor(Math.abs(swiped) + (1 - swipeThreshold)) * sign;
         const newPage = Math.max(Math.min(currentPage + pagesSwiped, this._getPagesCount() - 1), 0)
 
         if (newPage !== currentPage) {
